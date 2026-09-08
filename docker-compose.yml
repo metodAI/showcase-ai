@@ -1,0 +1,20 @@
+name: ${PROJECT_NAME}
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  n8n_data:
+  qdrant_data:
