@@ -6,6 +6,7 @@ services:
     environment:
       - ENVIRONMENT=${ENVIRONMENT}
       - N8N_RESTRICT_FILE_ACCESS_TO=/mnt/knowledge
+      - WEBHOOK_URL=${WEBHOOK_URL}
     ports:
       - "5678:5678"
     volumes:
@@ -16,7 +17,18 @@ services:
     image: qdrant/qdrant:latest
     volumes:
       - qdrant_data:/qdrant/storage
+  postgres:
+    image: postgres:17
+    environment:
+      - POSTGRES_DB=showcase_ai
+      - POSTGRES_USER=showcase_ai
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   n8n_data:
   qdrant_data:
+  postgres_data:
