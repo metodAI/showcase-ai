@@ -252,11 +252,9 @@ The draft_edit_sessions table controls active Telegram editing sessions.
 
 Email delivery uses SMTP.
 
-Current development setup uses Gmail SMTP with:
+Current development setup uses Gmail SMTP.
 
-agent.metodaweb@gmail.com
-
-The sender address is used by n8n to deliver approved responses.
+The sender address is configured in n8n and is not stored in the repository.
 
 The workflow only changes the lead status to:
 
