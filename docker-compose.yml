@@ -8,13 +8,13 @@ services:
       - N8N_RESTRICT_FILE_ACCESS_TO=/mnt/knowledge
       - WEBHOOK_URL=${WEBHOOK_URL}
     ports:
-      - "5678:5678"
+      - "127.0.0.1:5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
       - ./knowledge:/mnt/knowledge:ro
 
   qdrant:
-    image: qdrant/qdrant:latest
+    image: qdrant/qdrant:v1.19.1
     volumes:
       - qdrant_data:/qdrant/storage
   postgres:

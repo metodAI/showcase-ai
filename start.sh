@@ -38,3 +38,31 @@ WEBHOOK_URL="${NGROK_URL}" docker compose up -d
 
 echo "==> Showcase AI is running."
 echo "==> Webhook URL: ${NGROK_URL}"
+
+echo "==> Starting Dashboard API..."
+
+if curl -sf http://127.0.0.1:8000/docs >/dev/null 2>&1; then
+    echo "==> Dashboard API is already running."
+else
+    cd "${PROJECT_DIR}/dashboard/api"
+
+    nohup .venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8000 \
+        >/tmp/showcase-ai-dashboard-api.log 2>&1 &
+    echo $! >/tmp/showcase-ai-dashboard-api.pid
+
+    for i in {1..30}; do
+        if curl -sf http://127.0.0.1:8000/docs >/dev/null 2>&1; then
+            break
+        fi
+        sleep 1
+    done
+
+    if curl -sf http://127.0.0.1:8000/docs >/dev/null 2>&1; then
+        echo "==> Dashboard API is running."
+    else
+        echo "ERROR: Dashboard API did not start. See /tmp/showcase-ai-dashboard-api.log"
+        exit 1
+    fi
+fi
+
+echo "==> Dashboard URL: http://127.0.0.1:8000"

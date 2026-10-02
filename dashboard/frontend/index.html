@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>metodAI — Lead Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <a class="brand-area" href="index.html">
+                <div class="brand">metodAI</div>
+                <div class="subtitle">Lead Dashboard</div>
+            </a>
+
+            <div class="topbar-actions">
+
+                <div class="language-switch">
+                    <button class="language active">EN</button>
+                    <button class="language">PL</button>
+                </div>
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <span>System Online</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- MAIN -->
+
+        <main>
+
+            <!-- PAGE HEADER -->
+
+            <section class="page-header">
+
+                <div>
+                    <h1>Business Overview</h1>
+                    <p>Monitor lead activity and automation performance.</p>
+                </div>
+
+
+                <!-- TIME FILTER -->
+
+                <div class="time-filter">
+
+                    <button class="time-filter-button" id="time-filter-button">
+                        <span id="selected-period">Last 30 days</span>
+                        <span class="filter-arrow">⌄</span>
+                    </button>
+
+                    <div class="time-filter-menu" id="time-filter-menu">
+
+                        <button data-period="today">
+                            Today
+                        </button>
+
+                        <button data-period="7">
+                            Last 7 days
+                        </button>
+
+                        <button data-period="30" class="selected">
+                            Last 30 days
+                        </button>
+
+                        <button data-period="90">
+                            Last 90 days
+                        </button>
+
+                        <button data-period="all">
+                            All time
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- KPI -->
+
+            <section class="kpi-grid">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Leads Received
+                    </div>
+
+                    <div class="kpi-value" id="leads-received">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Total incoming leads
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Qualified Leads
+                    </div>
+
+                    <div class="kpi-value" id="qualified-leads">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Matching business profile
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Review Required
+                    </div>
+
+                    <div class="kpi-value" id="review-required">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Leads awaiting review
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Emails Sent
+                    </div>
+
+                    <div class="kpi-value" id="emails-sent">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Automated responses
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Average Lead Score
+                    </div>
+
+                    <div class="kpi-value" id="average-lead-score">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Average qualification score
+                    </div>
+
+                </div>
+
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Avg. Processing Time
+                    </div>
+
+                    <div class="kpi-value" id="processing-time">
+                        —
+                    </div>
+
+                    <div class="kpi-description">
+                        Lead processing duration
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- DASHBOARD GRID -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- LEAD ACTIVITY -->
+
+                <div class="panel panel-large">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Lead Activity</h2>
+                            <p>Leads received over time</p>
+                        </div>
+
+                        <span class="panel-badge">
+                            Activity
+                        </span>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="lead-activity-chart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <!-- PIPELINE -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Lead Pipeline</h2>
+                            <p>Status distribution</p>
+                        </div>
+
+                        <span class="panel-badge">
+                            Pipeline
+                        </span>
+
+                    </div>
+
+                    <div class="chart-container chart-container-small">
+                        <canvas id="pipeline-chart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <!-- CLASSIFICATION -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Classification</h2>
+                            <p>Lead qualification</p>
+                        </div>
+
+                        <span class="panel-badge">
+                            AI
+                        </span>
+
+                    </div>
+
+                    <div class="chart-container chart-container-small">
+                        <canvas id="classification-chart"></canvas>
+                    </div>
+
+                </div>
+                
+
+                <!-- RELIABILITY -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Reliability</h2>
+                            <p>System errors</p>
+                        </div>
+
+                        <span class="panel-badge">
+                            Health
+                        </span>
+
+                    </div>
+
+
+                    <div class="reliability-list">
+
+                        <div class="reliability-item">
+
+                            <div>
+                                <span>RAG errors</span>
+                                <small>Knowledge retrieval</small>
+                            </div>
+
+                            <strong id="rag-errors">—</strong>
+
+                        </div>
+
+
+                        <div class="reliability-item">
+
+                            <div>
+                                <span>Draft generation</span>
+                                <small>AI response creation</small>
+                            </div>
+
+                            <strong id="draft-generation-errors">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="reliability-item">
+
+                            <div>
+                                <span>Email sending</span>
+                                <small>SMTP delivery</small>
+                            </div>
+
+                            <strong id="email-send-errors">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AUTOMATION EFFICIENCY -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Automation Efficiency</h2>
+                            <p>Process performance</p>
+                        </div>
+
+                        <span class="panel-badge">
+                            Efficiency
+                        </span>
+
+                    </div>
+
+
+                    <div class="efficiency-list">
+
+                        <div class="efficiency-item">
+
+                            <div class="efficiency-label">
+                                <span>Automation Rate</span>
+                                <strong id="automation-rate">—</strong>
+                            </div>
+
+                            <div class="efficiency-bar">
+                                <div id="automation-rate-bar"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="efficiency-item">
+
+                            <div class="efficiency-label">
+                                <span>Qualification Rate</span>
+                                <strong id="qualification-rate">—</strong>
+                            </div>
+
+                            <div class="efficiency-bar">
+                                <div id="qualification-rate-bar"></div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="efficiency-item">
+
+                            <div class="efficiency-label">
+                                <span>Email Completion</span>
+                                <strong id="email-completion-rate">—</strong>
+                            </div>
+
+                            <div class="efficiency-bar">
+                                <div id="email-completion-rate-bar"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="efficiency-item">
+
+                             <div class="efficiency-label">
+                                 <span>Average Lead Score</span>
+                                 <strong id="automation-average-score">—</strong>
+                             </div>
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+<!-- RECENT ACTIVITY -->
+
+<section class="panel recent-activity-panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h2>Recent Activity</h2>
+            <p>Latest system activity</p>
+        </div>
+
+        <span class="panel-badge">
+            Activity
+        </span>
+
+    </div>
+
+
+    <div id="recent-activity-list" class="recent-activity-list">
+
+        <div class="recent-activity-empty">
+            Loading activity...
+        </div>
+
+    </div>
+
+
+    <div class="recent-activity-footer">
+
+        <a class="recent-activity-link" href="activity.html">
+            View all activity →
+        </a>
+
+    </div>
+
+</section>
+
+            <!-- ROI CALCULATOR -->
+
+<section class="panel roi-panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h2>ROI Calculator</h2>
+            <p>Estimate the business value of automation</p>
+        </div>
+
+        <span class="panel-badge">
+            ROI
+        </span>
+
+    </div>
+
+
+    <div class="roi-layout">
+
+        <div class="roi-inputs">
+
+            <div class="roi-field">
+                <label for="roi-monthly-leads">
+                    Monthly Leads
+                </label>
+
+                <input
+                    id="roi-monthly-leads"
+                    type="number"
+                    min="0"
+                    value="100"
+                >
+            </div>
+
+
+            <div class="roi-field">
+                <label for="roi-minutes-per-lead">
+                    Minutes per Lead
+                </label>
+
+                <input
+                    id="roi-minutes-per-lead"
+                    type="number"
+                    min="0"
+                    value="15"
+                >
+            </div>
+
+
+            <div class="roi-field">
+                <label for="roi-hourly-cost">
+                    Hourly Labor Cost (PLN)
+                </label>
+
+                <input
+                    id="roi-hourly-cost"
+                    type="number"
+                    min="0"
+                    value="60"
+                >
+            </div>
+
+
+            <div class="roi-field">
+                <label for="roi-qualification-rate">
+                    Qualification Rate (%)
+                </label>
+
+                <input
+                    id="roi-qualification-rate"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="30"
+                >
+            </div>
+
+
+            <div class="roi-field">
+                <label for="roi-lead-value">
+                    Lead Value
+                </label>
+
+                <input
+                    id="roi-lead-value"
+                    type="number"
+                    min="0"
+                    value="500"
+                >
+            </div>
+
+
+            <button
+                id="roi-calculate"
+                class="roi-button"
+                type="button"
+            >
+                Calculate ROI
+            </button>
+
+        </div>
+
+
+        <div class="roi-results">
+
+            <div class="roi-result">
+                <span>Manual Processing Cost</span>
+                <strong id="roi-manual-cost">—</strong>
+            </div>
+
+
+            <div class="roi-result">
+                <span>Time Saved</span>
+                <strong id="roi-time-saved">—</strong>
+            </div>
+
+
+            <div class="roi-result">
+                <span>Estimated Monthly Savings</span>
+                <strong id="roi-monthly-savings">—</strong>
+            </div>
+
+
+            <div class="roi-result">
+                <span>Estimated Annual Savings</span>
+                <strong id="roi-annual-savings">—</strong>
+            </div>
+
+
+            <div class="roi-result roi-result-highlight">
+                <span>Potential Lead Value</span>
+                <strong id="roi-lead-value-result">—</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        </main>
+
+        <!-- FOOTER -->
+
+        <footer>
+            <span>metodAI</span>
+            <span>Lead Dashboard</span>
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

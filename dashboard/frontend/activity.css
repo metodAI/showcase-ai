@@ -1,0 +1,591 @@
+/* =========================================================
+   ACTIVITY & COMMUNICATIONS
+   metodAI dashboard
+   ========================================================= */
+
+.activity-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 32px 0 28px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #7f8a9a;
+    margin-bottom: 8px;
+}
+
+.activity-intro h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+.activity-intro p {
+    margin: 8px 0 0;
+    color: #7f8a9a;
+    font-size: 14px;
+}
+
+.activity-search {
+    width: 260px;
+
+    padding: 10px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition: border-color 0.18s ease;
+}
+
+.activity-search::placeholder {
+    color: var(--muted);
+}
+
+.activity-search:focus {
+    border-color: var(--accent);
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.activity-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.85fr) minmax(420px, 1.35fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.events-panel,
+.communication-panel,
+.activity-side-column {
+    min-width: 0;
+}
+
+.activity-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-event {
+    display: grid;
+    grid-template-columns: 12px 1fr;
+    gap: 14px;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        padding 0.18s ease;
+}
+
+.activity-event:last-child {
+    border-bottom: none;
+}
+
+.activity-event:hover {
+    background: rgba(255, 255, 255, 0.025);
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.activity-event.active {
+    background: rgba(255, 255, 255, 0.04);
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 8px;
+}
+
+.activity-event-dot {
+    width: 8px;
+    height: 8px;
+
+    margin-top: 5px;
+
+    border-radius: 50%;
+
+    background: #6f7b8b;
+
+    box-shadow:
+        0 0 0 4px rgba(111, 123, 139, 0.08);
+}
+
+.activity-event-content {
+    min-width: 0;
+}
+
+.activity-event-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e8ebef;
+    margin-bottom: 5px;
+}
+
+.activity-event-detail {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #8993a2;
+}
+
+.activity-event-company {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #b2bac5;
+}
+
+.activity-event-time {
+    margin-top: 7px;
+    font-size: 11px;
+    color: #626c7b;
+}
+
+
+/* =========================================================
+   SHOW MORE
+   ========================================================= */
+
+.events-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 18px;
+}
+
+.show-more-button {
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: #c7ced8;
+
+    border-radius: 7px;
+
+    padding: 9px 18px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.show-more-button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #e3e7ec;
+}
+
+.show-more-button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+
+/* =========================================================
+   COMMUNICATION
+   ========================================================= */
+
+.communication-content {
+    min-height: 520px;
+}
+
+.communication-empty {
+    min-height: 480px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+.empty-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 12px;
+
+    color: #778293;
+
+    font-size: 20px;
+
+    margin-bottom: 18px;
+}
+
+.communication-empty h3 {
+    margin: 0;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #dce1e8;
+}
+
+.communication-empty p {
+    max-width: 280px;
+
+    margin: 8px 0 0;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: #737e8d;
+}
+
+
+/* =========================================================
+   LEAD
+   ========================================================= */
+
+.communication-lead {
+    margin-bottom: 24px;
+}
+
+.communication-lead-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #edf0f4;
+}
+
+.communication-lead-company {
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #8c97a6;
+}
+
+.communication-lead-email {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #687383;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.communication-section {
+    margin-top: 22px;
+}
+
+.communication-label {
+    margin-bottom: 8px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: #667180;
+}
+
+
+/* =========================================================
+   PROBLEM
+   ========================================================= */
+
+.communication-problem {
+    padding: 14px 16px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 8px;
+
+    color: #c2c9d2;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   VERSION SELECTOR
+   ========================================================= */
+
+.draft-version-bar {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 14px;
+}
+
+.draft-version-button {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: transparent;
+
+    color: #7e8998;
+
+    border-radius: 6px;
+
+    padding: 6px 10px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.draft-version-button:hover {
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #bfc6d0;
+}
+
+.draft-version-button.active {
+    background: rgba(255, 255, 255, 0.07);
+
+    border-color: rgba(255, 255, 255, 0.14);
+
+    color: #e3e7ec;
+}
+
+
+/* =========================================================
+   EMAIL CARD
+   ========================================================= */
+
+.email-card {
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    border-radius: 9px;
+
+    overflow: hidden;
+}
+
+.email-card-header {
+    padding: 14px 16px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.email-subject {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #dfe4ea;
+}
+
+.email-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 6px;
+
+    font-size: 11px;
+
+    color: #687382;
+}
+
+.email-body {
+    padding: 20px 16px;
+
+    white-space: pre-wrap;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: #b9c1cc;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.communication-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-top: 10px;
+
+    padding: 4px 8px;
+
+    border-radius: 5px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #7f8a98;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
+}
+
+
+/* =========================================================
+   STATES
+   ========================================================= */
+
+.activity-loading,
+.communication-loading {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: #707b8a;
+
+    font-size: 12px;
+}
+
+.activity-empty {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    color: #707b8a;
+
+    font-size: 12px;
+}
+
+.communication-error {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #9b6f6f;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.back-button {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   ACTIVITY SUMMARY
+   ========================================================= */
+
+.activity-summary-panel {
+    min-height: auto;
+}
+
+.activity-summary-panel .reliability-item {
+    padding: 12px 0;
+}
+
+.activity-summary-panel .reliability-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .activity-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-intro {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .activity-search {
+        width: 100%;
+    }
+
+    .communication-content {
+        min-height: auto;
+    }
+
+    .communication-empty {
+        min-height: 300px;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .activity-intro h1 {
+        font-size: 24px;
+    }
+
+    .activity-layout {
+        gap: 14px;
+    }
+
+    .email-body {
+        font-size: 12px;
+    }
+}

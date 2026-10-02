@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>metodAI — Activity & Communications</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="activity.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+    <a class="brand-area" href="index.html">
+        <div class="brand">metodAI</div>
+        <div class="subtitle">Lead Dashboard</div>
+    </a>
+
+    <div class="topbar-actions">
+
+        <div class="language-switch">
+            <button class="language active">EN</button>
+            <button class="language">PL</button>
+        </div>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            <span>System Online</span>
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+
+<!-- MAIN -->
+
+<main>
+
+    <!-- INTRO -->
+    <section class="activity-intro">
+
+        <div>
+            <div class="eyebrow">
+                ACTIVITY CENTER
+            </div>
+
+            <h1>
+                Activity & Communications
+            </h1>
+
+            <p>
+                Review system events and lead communication history.
+            </p>
+        </div>
+
+
+        <input
+            id="lead-search"
+            class="activity-search"
+            type="search"
+            placeholder="Search leads..."
+            autocomplete="off"
+        >
+
+    </section>
+
+    
+
+    <div class="activity-layout">
+
+        <!-- EVENTS -->
+
+        <section class="panel events-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Recent Events</h2>
+
+                    <p>
+                        Latest activity across your leads
+                    </p>
+                </div>
+
+                <span class="panel-badge">
+                    Events
+                </span>
+
+            </div>
+
+
+            <div
+                id="events-list"
+                class="events-list"
+            >
+                <div class="activity-loading">
+                    Loading events...
+                </div>
+            </div>
+
+
+            <div class="events-footer">
+
+                <button
+                    id="events-show-more"
+                    class="show-more-button"
+                    type="button"
+                >
+                    Show more
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT COLUMN -->
+
+        <div class="activity-side-column">
+
+        <!-- COMMUNICATION -->
+
+        <section class="panel communication-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Email Communication</h2>
+
+                    <p>
+                        Lead problem and response history
+                    </p>
+                </div>
+
+                <span class="panel-badge">
+                    Communication
+                </span>
+
+            </div>
+
+
+            <div
+                id="communication-content"
+                class="communication-content"
+            >
+
+                <div class="communication-empty">
+
+                    <div class="empty-icon">
+                        ✉
+                    </div>
+
+                    <h3>
+                        Select an event
+                    </h3>
+
+                    <p>
+                        Select a lead activity to view its
+                        communication history.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITY SUMMARY -->
+
+        <section class="panel activity-summary-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Activity Summary</h2>
+
+                    <p>
+                        Overview of loaded activity
+                    </p>
+                </div>
+
+                <span class="panel-badge">
+                    Summary
+                </span>
+
+            </div>
+
+
+            <div
+                id="activity-summary"
+                class="reliability-list"
+            >
+                <div class="activity-loading">
+                    Loading summary...
+                </div>
+            </div>
+
+        </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+</div>
+
+
+<script src="activity.js"></script>
+
+</body>
+</html>
